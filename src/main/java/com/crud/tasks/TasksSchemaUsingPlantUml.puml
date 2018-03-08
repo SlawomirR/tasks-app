@@ -1,0 +1,28 @@
+@startuml
+class TaskController {
+- {field} TaskMapper taskMapper
+- {field} DbService dbService
++ {method} getTasks(): List<TaskDto>
++ {method} getTask(Long taskId): TaskDto
++ {method} deleteTask(Long taskId): void
++ {method} updateTask(TaskDto taskDto): TaskDto
++ {method} createTask(TaskDto taskDto): void
+}
+
+class TaskMapper {
++ {method} map(TaskDto taskDto): Task
++ {method} mapDto(Task task): TaskDto
+}
+
+class DbService {
++ {method} getTasks(): List<Task>
++ {method} getTask(Long taskId): Task
++ {method} deleteTask(Long taskId): void
++ {method} updateTask(TaskDto taskDto): Task
++ {method} createTask(Task task): void
+}
+
+TaskController *-- TaskMapper
+TaskController *-- DbService
+
+@enduml
