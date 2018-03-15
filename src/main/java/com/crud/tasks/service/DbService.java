@@ -14,12 +14,14 @@ public class DbService {
     private TaskRepository repository;
 
     public List<Task> getAllTasks() {
-        System.out.println("Working on \"getAllTasks()\" method.");
         return repository.findAll();
     }
 
+    public Task saveTask(final Task task) {
+        return repository.save(task);
+    }
+
     public Optional<Task> getTask(final Long id) {
-        System.out.println("Working on \"getTask(Final Long id)\" method.");
         return repository.findById(id);
     }
 }
