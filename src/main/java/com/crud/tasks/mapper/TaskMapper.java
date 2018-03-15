@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 @Component
 public class TaskMapper {
     public Task mapToTask(final TaskDto taskDto) {
-        System.out.println("\"mapToTask()\" do it's job.");
         return new Task(
                 taskDto.getId(),
                 taskDto.getTitle(),
@@ -18,7 +17,6 @@ public class TaskMapper {
     }
 
     public TaskDto mapToTaskDto(final Task task) {
-        System.out.println("\"mapToTaskDto()\" do it's job.");
         return new TaskDto(
                 task.getId(),
                 task.getTitle(),
@@ -26,7 +24,6 @@ public class TaskMapper {
     }
 
     public List<TaskDto> mapToTaskDtoList(final List<Task> taskList) {
-        System.out.println("\"mapToTaskDtoList()\" do it's job.");
         return taskList.stream()
                 .map(t -> new TaskDto(t.getId(), t.getTitle(), t.getContent()))
                 .collect(Collectors.toList());
