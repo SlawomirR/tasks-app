@@ -27,7 +27,8 @@ rename() {
 
 copy_file() {
     if sudo cp -v $CRUD_WAR $CATALINA_LIB/webapps/; then
-        stop_tomcat && start_tomcat
+        #stop_tomcat && start_tomcat
+        systemctl restart tomcat8.service
         sudo -k
     else
         fail
