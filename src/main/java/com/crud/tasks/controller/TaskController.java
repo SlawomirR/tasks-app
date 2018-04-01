@@ -24,12 +24,12 @@ public class TaskController {
     }
 
     @GetMapping("getTask")
-    public TaskDto getTask(@RequestParam long taskId) throws TaskNotFoundException {
+    public TaskDto getTask(@RequestParam Long taskId) throws TaskNotFoundException {
         return taskMapper.mapToTaskDto(service.getTask(taskId).orElseThrow(TaskNotFoundException::new));
     }
 
     @DeleteMapping(value = "deleteTask")
-    public void deleteTask(@RequestParam long taskId) {
+    public void deleteTask(@RequestParam Long taskId) {
         service.deleteTask(taskId);
     }
 
