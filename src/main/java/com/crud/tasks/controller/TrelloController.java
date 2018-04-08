@@ -26,13 +26,15 @@ public class TrelloController {
         trelloBoards.stream()
                 .filter(trelloBoardDto -> trelloBoardDto.getId() != null)
                 .filter(trelloBoardDto -> trelloBoardDto.getName() != null)
-                .filter(trelloBoardDto -> trelloBoardDto.getName().contains("Kodilla"))
-                .forEach(trelloBoardDto -> {System.out.println(trelloBoardDto.getName() + " - " + trelloBoardDto.getId());
+//                .filter(trelloBoardDto -> trelloBoardDto.getName().contains("Kodilla"))
+                .forEach(trelloBoardDto -> {System.out.print("==> " + trelloBoardDto.getName() + " - " + trelloBoardDto.getId()
+                        + " - " + (trelloBoardDto.isClosed() ? "closed" : "open"));
                     if ( ! trelloBoardDto.getLists().isEmpty()) {
-                        System.out.println("This board contains lists:");
-                        trelloBoardDto.getLists().forEach((trelloListDto -> System.out.println(trelloListDto.getName()
-                        + " - " + trelloListDto.getId() + " - " + trelloListDto.isClosed())));
+                        System.out.println(" <== and contains lists:");
+                        trelloBoardDto.getLists().forEach(trelloListDto -> System.out.println(trelloListDto.getName()
+                        + " - " + trelloListDto.getId() + " - " + (trelloListDto.isClosed() ? "closed" : "open")));
                     }
+                    System.out.println(System.lineSeparator());
                 });
     }
 

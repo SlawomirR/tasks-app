@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TrelloBoardDto {
     @JsonProperty("name")
@@ -18,6 +18,9 @@ public class TrelloBoardDto {
 
     @JsonProperty("id")
     private String id;
+
+    @JsonProperty("closed")
+    private boolean isClosed;
 
     @JsonProperty("lists")
     private List<TrelloListDto> lists;
