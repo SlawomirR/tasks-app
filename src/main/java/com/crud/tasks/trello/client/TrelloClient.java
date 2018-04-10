@@ -44,22 +44,34 @@ public class TrelloClient {
     }
 
     private URI urlTrelloBoards() {
-        return UriComponentsBuilder.fromHttpUrl(trelloConfig.getTrelloAppEndpoint() + "/members/" + trelloConfig.getUsername() + "/boards")
-                .queryParam("key", trelloConfig.getTrelloAppKey())
-                .queryParam("token", trelloConfig.getTrelloToken())
+        String pathOnServer = "/members/" + trelloConfig.getUsername() + "/boards";
+        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance();
+        autenticationQueryParam(uriComponentsBuilder);
+        uriComponentsBuilder
                 .queryParam("fields", "name,id,closed")
-                .queryParam("lists", "all")
-                .build().encode().toUri();
+                .queryParam("lists", "all");
+        return uriComponentsBuilder.buildAndExpand(pathOnServer).encode().toUri();
     }
 
     private URI urlTrelloCard(TrelloCardDto trelloCardDto) {
-        return UriComponentsBuilder.fromHttpUrl(trelloConfig.getTrelloAppEndpoint() + "/cards")
-                .queryParam("key", trelloConfig.getTrelloAppKey())
-                .queryParam("token", trelloConfig.getTrelloToken())
-                .queryParam("name", trelloCardDto.getName())
+        String pathOnServer = "/cards";
+        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance();
+        autenticationQueryParam(uriComponentsBuilder);
+        uriComponentsBuilder
                 .queryParam("desc", trelloCardDto.getDescription())
                 .queryParam("pos", trelloCardDto.getPos())
-                .queryParam("idList", trelloCardDto.getListId())
-                .build().encode().toUri();
+                .queryParam("idList", trelloCardDto.getListId());
+        return uriComponentsBuilder.buildAndExpand(pathOnServer).encode().toUri();
+    }
+
+    private UriComponentsBuilder autenticationQueryParam(UriComponentsBuilder uriComponentsBuilder) {
+        String[] trelloAppEndpoint = trelloConfig.getTrelloAppEndpoint().split("/");
+        return uriComponentsBuilder
+                .scheme(trelloAppEndpoint[0].substring(0, trelloAppEndpoint[0].length() - 1)) // htttps part without ":" at the end
+                .host(trelloAppEndpoint[2])
+                .path(trelloAppEndpoint[3])
+                .path("{path}")
+                .queryParam("key", trelloConfig.getTrelloAppKey())
+                .queryParam("token", trelloConfig.getTrelloToken());
     }
 }
