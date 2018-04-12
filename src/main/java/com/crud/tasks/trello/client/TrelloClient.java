@@ -29,12 +29,16 @@ public class TrelloClient {
     private RestTemplate restTemplate;
 
     public CreatedTrelloCard createNewCard(TrelloCardDto trelloCardDto) {
-        // without TRY to let front-end to do error verification
-        return restTemplate.postForObject(urlTrelloCard(trelloCardDto), null, CreatedTrelloCard.class);
+        LOGGER.debug("==> postForObject: " + urlTrelloCard(trelloCardDto).toString());
+        CreatedTrelloCard createNewCard = restTemplate.postForObject(urlTrelloCard(trelloCardDto), null, CreatedTrelloCard.class);
+        LOGGER.debug("==> createNewCard: " + createNewCard.toString());
+        // without TRY for now to let front-end to do error verification
+        return createNewCard;
     }
 
     public List<TrelloBoardDto> getTrelloBoards() {
         try {
+            LOGGER.debug("==> getForObject: " + urlTrelloBoards().toString());
             TrelloBoardDto[] boardsResponse = restTemplate.getForObject(urlTrelloBoards(), TrelloBoardDto[].class);
             return Arrays.asList(Optional.ofNullable(boardsResponse).orElse(new TrelloBoardDto[0]));
         } catch (RestClientException e) {
@@ -55,11 +59,13 @@ public class TrelloClient {
 
     private URI urlTrelloCard(TrelloCardDto trelloCardDto) {
         String pathOnServer = "/cards";
+        LOGGER.debug("==> trelloCardDto contains: " + trelloCardDto.toString());
         UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance();
         autenticationQueryParam(uriComponentsBuilder);
         uriComponentsBuilder
+                .queryParam("name", trelloCardDto.getName())
                 .queryParam("desc", trelloCardDto.getDescription())
-                .queryParam("pos", trelloCardDto.getPos())
+//                .queryParam("pos", trelloCardDto.getPos())
                 .queryParam("idList", trelloCardDto.getListId());
         return uriComponentsBuilder.buildAndExpand(pathOnServer).encode().toUri();
     }
@@ -67,7 +73,7 @@ public class TrelloClient {
     private UriComponentsBuilder autenticationQueryParam(UriComponentsBuilder uriComponentsBuilder) {
         String[] trelloAppEndpoint = trelloConfig.getTrelloAppEndpoint().split("/");
         return uriComponentsBuilder
-                .scheme(trelloAppEndpoint[0].substring(0, trelloAppEndpoint[0].length() - 1)) // htttps part without ":" at the end
+                .scheme(trelloAppEndpoint[0].substring(0, trelloAppEndpoint[0].length() - 1)) // https part without ":" at the end
                 .host(trelloAppEndpoint[2])
                 .path(trelloAppEndpoint[3])
                 .path("{path}")
