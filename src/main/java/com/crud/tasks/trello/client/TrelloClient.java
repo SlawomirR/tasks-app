@@ -1,6 +1,6 @@
 package com.crud.tasks.trello.client;
 
-import com.crud.tasks.domain.CreatedTrelloCard;
+import com.crud.tasks.domain.CreatedTrelloCardDto;
 import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.domain.TrelloCardDto;
 import com.crud.tasks.trello.config.TrelloConfig;
@@ -28,9 +28,9 @@ public class TrelloClient {
     @Autowired
     private RestTemplate restTemplate;
 
-    public CreatedTrelloCard createNewCard(TrelloCardDto trelloCardDto) {
+    public CreatedTrelloCardDto createNewCard(TrelloCardDto trelloCardDto) {
         LOGGER.debug("==> postForObject: " + urlTrelloCard(trelloCardDto).toString());
-        CreatedTrelloCard createNewCard = restTemplate.postForObject(urlTrelloCard(trelloCardDto), null, CreatedTrelloCard.class);
+        CreatedTrelloCardDto createNewCard = restTemplate.postForObject(urlTrelloCard(trelloCardDto), null, CreatedTrelloCardDto.class);
         LOGGER.debug("==> createNewCard: " + createNewCard.toString());
         // without TRY for now to let front-end to do error verification
         return createNewCard;
@@ -65,13 +65,14 @@ public class TrelloClient {
         uriComponentsBuilder
                 .queryParam("name", trelloCardDto.getName())
                 .queryParam("desc", trelloCardDto.getDescription())
-//                .queryParam("pos", trelloCardDto.getPos())
+                .queryParam("pos", trelloCardDto.getPos())
                 .queryParam("idList", trelloCardDto.getListId());
         return uriComponentsBuilder.buildAndExpand(pathOnServer).encode().toUri();
     }
 
     private UriComponentsBuilder autenticationQueryParam(UriComponentsBuilder uriComponentsBuilder) {
-        String[] trelloAppEndpoint = trelloConfig.getTrelloAppEndpoint().split("/");
+        String[] trelloAppEndpoint = trelloConfig.getTrelloApiEndpoint().split("/", 4);
+        LOGGER.debug("==> trelloAppEndpoint[]: " + Arrays.asList(trelloAppEndpoint).toString());
         return uriComponentsBuilder
                 .scheme(trelloAppEndpoint[0].substring(0, trelloAppEndpoint[0].length() - 1)) // https part without ":" at the end
                 .host(trelloAppEndpoint[2])

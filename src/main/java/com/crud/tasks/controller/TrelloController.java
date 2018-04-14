@@ -1,6 +1,6 @@
 package com.crud.tasks.controller;
 
-import com.crud.tasks.domain.CreatedTrelloCard;
+import com.crud.tasks.domain.CreatedTrelloCardDto;
 import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.domain.TrelloCardDto;
 import com.crud.tasks.trello.client.TrelloClient;
@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/v1/trello")
 @CrossOrigin(origins = "*")
 public class TrelloController {
-    final Logger LOGGER = LoggerFactory.getLogger(getClass());
+    private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
     @Autowired
     private TrelloClient trelloClient;
@@ -26,9 +26,9 @@ public class TrelloController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "createTrelloCard")
-    public CreatedTrelloCard createdTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
-        CreatedTrelloCard createNewCard = trelloClient.createNewCard(trelloCardDto);
-        LOGGER.debug("createNewCard: " + createNewCard.toString());
+    public CreatedTrelloCardDto createdTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
+        CreatedTrelloCardDto createNewCard = trelloClient.createNewCard(trelloCardDto);
+        LOGGER.debug("==> createNewCard: " + createNewCard.toString());
         return createNewCard;
     }
 }
