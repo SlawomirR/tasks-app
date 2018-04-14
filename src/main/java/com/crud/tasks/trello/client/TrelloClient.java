@@ -1,6 +1,6 @@
 package com.crud.tasks.trello.client;
 
-import com.crud.tasks.domain.CreatedTrelloCardDto;
+import com.crud.tasks.domain.CreatedTrelloCard;
 import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.domain.TrelloCardDto;
 import com.crud.tasks.trello.config.TrelloConfig;
@@ -28,9 +28,9 @@ public class TrelloClient {
     @Autowired
     private RestTemplate restTemplate;
 
-    public CreatedTrelloCardDto createNewCard(TrelloCardDto trelloCardDto) {
+    public CreatedTrelloCard createNewCard(TrelloCardDto trelloCardDto) {
         LOGGER.debug("==> postForObject: " + urlTrelloCard(trelloCardDto).toString());
-        CreatedTrelloCardDto createNewCard = restTemplate.postForObject(urlTrelloCard(trelloCardDto), null, CreatedTrelloCardDto.class);
+        CreatedTrelloCard createNewCard = restTemplate.postForObject(urlTrelloCard(trelloCardDto), null, CreatedTrelloCard.class);
         LOGGER.debug("==> createNewCard: " + createNewCard.toString());
         // without TRY for now to let front-end to do error verification
         return createNewCard;
