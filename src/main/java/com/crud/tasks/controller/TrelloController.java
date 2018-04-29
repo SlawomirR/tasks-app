@@ -1,11 +1,9 @@
 package com.crud.tasks.controller;
 
-import com.crud.tasks.domain.CreatedTrelloCard;
+import com.crud.tasks.domain.CreatedTrelloCardDto;
 import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.domain.TrelloCardDto;
-import com.crud.tasks.service.TrelloService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.crud.tasks.trello.facade.TrelloFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,22 +13,18 @@ import java.util.List;
 @RequestMapping("/v1/trello")
 @CrossOrigin(origins = "*")
 public class TrelloController {
-    private final Logger LOGGER = LoggerFactory.getLogger(getClass());
-
     @Autowired
-    private TrelloService trelloService;
+    private TrelloFacade trelloFacade;
 
 //    @RequestMapping(method = RequestMethod.GET, value = "getTrelloBoards")
     @GetMapping(value = "getTrelloBoards")
     public List<TrelloBoardDto> getTrelloBoards() {
-        return trelloService.fetchTrelloBoards();
+        return trelloFacade.fetchTrelloBoards();
     }
 
 //    @RequestMapping(method = RequestMethod.POST, value = "createTrelloCard")
     @PostMapping(value = "createTrelloCard")
-    public CreatedTrelloCard createTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
-        CreatedTrelloCard createNewCard = trelloService.createTrelloCard(trelloCardDto);
-        LOGGER.debug("==> createNewCard: " + createNewCard.toString());
-        return createNewCard;
+    public CreatedTrelloCardDto createTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
+        return trelloFacade.createCard(trelloCardDto);
     }
 }
