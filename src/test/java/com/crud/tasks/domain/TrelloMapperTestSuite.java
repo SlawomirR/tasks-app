@@ -1,5 +1,6 @@
 package com.crud.tasks.domain;
 
+import com.crud.tasks.mapper.TrelloMapper;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +18,7 @@ public class TrelloMapperTestSuite {
     private TrelloMapper trelloMapper;
 
     @Test
-    public void mapToBoards() {
+    public void testMapToBoards() {
         // Given
         String listId = "List123456";
         String listName = "List Name";
@@ -39,7 +40,7 @@ public class TrelloMapperTestSuite {
     }
 
     @Test
-    public void mapToBoardsDto() {
+    public void testMapToBoardsDto() {
         // Given
         String listId = "List123456";
         String listName = "List Name";
@@ -61,7 +62,7 @@ public class TrelloMapperTestSuite {
     }
 
     @Test
-    public void mapToList() {
+    public void testMapToList() {
         // Given
         String listId = "List123456";
         String listName = "List Name";
@@ -78,7 +79,7 @@ public class TrelloMapperTestSuite {
     }
 
     @Test
-    public void mapToListDto() {
+    public void testMapToListDto() {
         // Given
         String listId = "List123456";
         String listName = "List Name";
@@ -95,15 +96,15 @@ public class TrelloMapperTestSuite {
     }
 
     @Test
-    public void mapToCardDto() {
+    public void testMapToCard() {
         // Given
         String cardName = "Card Name";
         String cardDescription = "Card Desc";
         String cardPos = "Card Pos";
         String cardListId = "ListId123456";
-
+        TrelloCardDto trelloCardDto = new TrelloCardDto(cardName, cardDescription, cardPos, cardListId);
         // When
-        TrelloCard trelloCard = new TrelloCard(cardName, cardDescription, cardPos, cardListId);
+        TrelloCard trelloCard = trelloMapper.mapToCard(trelloCardDto);
         // Then
         Assert.assertEquals(cardName, trelloCard.getName());
         Assert.assertEquals(cardDescription, trelloCard.getDescription());
@@ -112,15 +113,15 @@ public class TrelloMapperTestSuite {
     }
 
     @Test
-    public void mapToCard() {
+    public void testMapToCardDto() {
         // Given
         String cardName = "Card Name";
         String cardDescription = "Card Desc";
         String cardPos = "Card Pos";
         String cardListId = "ListId123456";
-
+        TrelloCard trelloCard = new TrelloCard(cardName, cardDescription, cardPos, cardListId);
         // When
-        TrelloCardDto trelloCardDto = new TrelloCardDto(cardName, cardDescription, cardPos, cardListId);
+        TrelloCardDto trelloCardDto = trelloMapper.mapToCardDto(trelloCard);
         // Then
         Assert.assertEquals(cardName, trelloCardDto.getName());
         Assert.assertEquals(cardDescription, trelloCardDto.getDescription());

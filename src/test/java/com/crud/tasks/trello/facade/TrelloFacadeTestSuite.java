@@ -1,6 +1,7 @@
 package com.crud.tasks.trello.facade;
 
 import com.crud.tasks.domain.*;
+import com.crud.tasks.mapper.TrelloMapper;
 import com.crud.tasks.service.TrelloService;
 import com.crud.tasks.trello.validator.TrelloValidator;
 import org.junit.Assert;
@@ -14,7 +15,9 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TrelloFacadeTestSuite {
@@ -45,13 +48,13 @@ public class TrelloFacadeTestSuite {
         List<TrelloBoard> mappedTrelloBoards = new ArrayList<>();
         mappedTrelloBoards.add(new TrelloBoard("1", "test", mappedTrelloLists));
 
-        Mockito.when(trelloService.fetchTrelloBoards()).thenReturn(trelloBoards);
-        Mockito.when(trelloMapper.mapToBoards(trelloBoards)).thenReturn(mappedTrelloBoards);
-        Mockito.when(trelloMapper.mapToBoardsDto(Mockito.anyList())).thenReturn(new ArrayList<>());
-        Mockito.when(trelloValidator.validateTrelloBoards(mappedTrelloBoards)).thenReturn(new ArrayList<>());
+        when(trelloService.fetchTrelloBoards()).thenReturn(trelloBoards);
+        when(trelloMapper.mapToBoards(trelloBoards)).thenReturn(mappedTrelloBoards);
+        when(trelloMapper.mapToBoardsDto(Mockito.anyList())).thenReturn(new ArrayList<>());
+        when(trelloValidator.validateTrelloBoards(mappedTrelloBoards)).thenReturn(new ArrayList<>());
         // When
         List<TrelloBoardDto> trelloBoardDtos = trelloFacade.fetchTrelloBoards();
-        //Then
+        // Then
         Assert.assertNotNull((trelloBoardDtos));
         Assert.assertEquals(0, trelloBoardDtos.size());
     }
@@ -71,13 +74,13 @@ public class TrelloFacadeTestSuite {
         List<TrelloBoard> mappedTrelloBoards = new ArrayList<>();
         mappedTrelloBoards.add(new TrelloBoard("1", "my_task", mappedTrelloLists));
 
-        Mockito.when(trelloService.fetchTrelloBoards()).thenReturn(trelloBoards);
-        Mockito.when(trelloMapper.mapToBoards(trelloBoards)).thenReturn(mappedTrelloBoards);
-        Mockito.when(trelloMapper.mapToBoardsDto(Mockito.anyList())).thenReturn(trelloBoards);
-        Mockito.when(trelloValidator.validateTrelloBoards(mappedTrelloBoards)).thenReturn(mappedTrelloBoards);
+        when(trelloService.fetchTrelloBoards()).thenReturn(trelloBoards);
+        when(trelloMapper.mapToBoards(trelloBoards)).thenReturn(mappedTrelloBoards);
+        when(trelloMapper.mapToBoardsDto(Mockito.anyList())).thenReturn(trelloBoards);
+        when(trelloValidator.validateTrelloBoards(mappedTrelloBoards)).thenReturn(mappedTrelloBoards);
         // When
         List<TrelloBoardDto> trelloBoardDtos = trelloFacade.fetchTrelloBoards();
-        //Then
+        // Then
         Assert.assertNotNull((trelloBoardDtos));
         Assert.assertEquals(1, trelloBoardDtos.size());
 
@@ -88,12 +91,26 @@ public class TrelloFacadeTestSuite {
             trelloBoardDto.getLists().forEach(trelloListDto -> {
                 assertEquals("1", trelloListDto.getId());
                 assertEquals("my_list", trelloListDto.getName());
-                assertEquals(false, trelloListDto.isClosed());
+                assertFalse(trelloListDto.isClosed());
             });
         });
     }
 
     @Test
-    public void createCard() {
+    public void shouldCreateCard() {
+        // Given
+        TrelloCardDto trelloCardDto = new TrelloCardDto("Test name", "Test description", "Top", "1");
+        TrelloCard trelloCard = new TrelloCard(trelloCardDto.getName(), trelloCardDto.getDescription(), trelloCardDto.getPos(), trelloCardDto.getListId());
+        CreatedTrelloCardDto createdTrelloCardDto = new CreatedTrelloCardDto("1", "Test name", "shortUrl");
+
+        when(trelloMapper.mapToCard(trelloCardDto)).thenReturn(trelloCard);
+        when(trelloService.createTrelloCard(trelloMapper.mapToCardDto(trelloCard))).thenReturn(createdTrelloCardDto);
+        //When
+        CreatedTrelloCardDto createdCard = trelloFacade.createCard(trelloCardDto);
+        // Then
+        assertEquals("1", createdCard.getId());
+        assertEquals("Test name", createdCard.getName());
+        assertEquals("shortUrl", createdCard.getShortUrl());
+
     }
 }

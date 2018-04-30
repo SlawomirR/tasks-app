@@ -1,3 +1,4 @@
+/*
 package com.crud.tasks.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -16,3 +17,4 @@ public class TrelloCardAttachmentByTypeDto {
     @JsonProperty("trello")
     private TrelloDto trelloDto;
 }
+*/

@@ -1,5 +1,6 @@
-package com.crud.tasks.domain;
+package com.crud.tasks.mapper;
 
+import com.crud.tasks.domain.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -31,13 +32,13 @@ public class TrelloMapper {
                 .collect(Collectors.toList());
     }
 
-    public TrelloCardDto mapToCardDto(final TrelloCard trelloCard) {
-        return new TrelloCardDto(trelloCard.getName(), trelloCard.getDescription(),
-                trelloCard.getPos(), trelloCard.getListId());
-    }
-
     public TrelloCard mapToCard(final TrelloCardDto trelloCardDto) {
         return new TrelloCard(trelloCardDto.getName(), trelloCardDto.getDescription(),
                 trelloCardDto.getPos(), trelloCardDto.getListId());
+    }
+
+    public TrelloCardDto mapToCardDto(final TrelloCard trelloCard) {
+        return new TrelloCardDto(trelloCard.getName(), trelloCard.getDescription(),
+                trelloCard.getPos(), trelloCard.getListId());
     }
 }
