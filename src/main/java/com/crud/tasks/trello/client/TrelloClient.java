@@ -52,7 +52,7 @@ public class TrelloClient {
         UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance();
         autenticationQueryParam(uriComponentsBuilder);
         uriComponentsBuilder
-                .queryParam("fields", "name,id,closed")
+                .queryParam("fields", "id,name,closed")
                 .queryParam("lists", "all");
         return uriComponentsBuilder.buildAndExpand(pathOnServer).encode().toUri();
     }

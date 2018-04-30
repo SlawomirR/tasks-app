@@ -41,9 +41,9 @@ public class TrelloClientTest {
     public void shouldFetchTrelloBoards() throws URISyntaxException {
         // Given
         TrelloBoardDto[] trelloBoards = new TrelloBoardDto[1];
-        trelloBoards[0] = new TrelloBoardDto("test_board", "test_id", new ArrayList<>());
+        trelloBoards[0] = new TrelloBoardDto("test_id", "test_board", new ArrayList<>());
 
-        URI uri = new URI("http://test.com/1/members/USERNAME/boards?key=test&token=test&fields=name,id,closed&lists=all");
+        URI uri = new URI("http://test.com/1/members/USERNAME/boards?key=test&token=test&fields=id,name,closed&lists=all");
 
         Mockito.when(restTemplate.getForObject(uri, TrelloBoardDto[].class)).thenReturn(trelloBoards);
         // When
@@ -85,7 +85,7 @@ public class TrelloClientTest {
     @Test
     public void shouldReturnEmptyList() throws URISyntaxException {
         // Given
-        URI uri = new URI("http://test.com/1/members/USERNAME/boards?key=test&token=test&fields=name,id,closed&lists=all");
+        URI uri = new URI("http://test.com/1/members/USERNAME/boards?key=test&token=test&fields=id,name,closed&lists=all");
         Mockito.when(restTemplate.getForObject(uri, TrelloBoardDto[].class)).thenReturn(null);
         // When
         List<TrelloBoardDto> fetchedTrelloBoards = trelloClient.getTrelloBoards();
