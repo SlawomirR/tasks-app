@@ -36,4 +36,5 @@ dependencies {
 	// Swagger
 	compile('io.springfox:springfox-swagger2:2.7.0')
 	compile('io.springfox:springfox-swagger-ui:2.7.0')
+	compile('com.google.code.gson:gson:2.8.3')
 }

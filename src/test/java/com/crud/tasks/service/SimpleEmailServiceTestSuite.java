@@ -11,7 +11,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
 @RunWith(MockitoJUnitRunner.class)
-public class SimpleEmailServiceTest {
+public class SimpleEmailServiceTestSuite {
 
     @InjectMocks
     private SimpleEmailService simpleEmailService;
