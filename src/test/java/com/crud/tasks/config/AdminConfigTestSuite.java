@@ -17,7 +17,7 @@ public class AdminConfigTestSuite {
     public void testGetAdminMail() {
         // Given
         // When
-        //Then
+        // Then
         Assert.assertTrue(adminConfig.getAdminMail().contains("@"));
     }
 }
