@@ -24,6 +24,7 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -44,7 +45,8 @@ public class TrelloControllerTestSuite {
         // When & Then
         mockMvc.perform(get("/v1/trello/getTrelloBoards").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200)) // or isOk()
-                .andExpect(jsonPath("$", hasSize(0)));
+                .andExpect(jsonPath("$", hasSize(0)))
+                .andDo(print());
     }
 
     @Test
@@ -68,7 +70,8 @@ public class TrelloControllerTestSuite {
                 .andExpect(jsonPath("$[0].lists", hasSize(1)))
                 .andExpect(jsonPath("$[0].lists[0].id", is("1")))
                 .andExpect(jsonPath("$[0].lists[0].name", is("Test List")))
-                .andExpect(jsonPath("$[0].lists[0].closed", is(false)));
+                .andExpect(jsonPath("$[0].lists[0].closed", is(false)))
+                .andDo(print());
     }
 
     @Test
@@ -96,6 +99,7 @@ public class TrelloControllerTestSuite {
                 .content(jsonContent))
                 .andExpect(jsonPath("$.id", is("323")))
                 .andExpect(jsonPath("$.name", is("Test")))
-                .andExpect(jsonPath("$.shortUrl", is("http://test.com")));
+                .andExpect(jsonPath("$.shortUrl", is("http://test.com")))
+                .andDo(print());
     }
 }

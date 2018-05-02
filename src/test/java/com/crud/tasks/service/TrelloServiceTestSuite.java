@@ -1,6 +1,9 @@
 package com.crud.tasks.service;
 
+import com.crud.tasks.config.AdminConfig;
+import com.crud.tasks.domain.CreatedTrelloCardDto;
 import com.crud.tasks.domain.TrelloBoardDto;
+import com.crud.tasks.domain.TrelloCardDto;
 import com.crud.tasks.domain.TrelloListDto;
 import com.crud.tasks.trello.client.TrelloClient;
 import org.junit.Test;
@@ -12,7 +15,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -23,6 +26,12 @@ public class TrelloServiceTestSuite {
     @Mock
     private TrelloClient trelloClient;
 
+    @Mock
+    private AdminConfig adminConfig;
+
+    @Mock
+    private SimpleEmailService emailService;
+
     @Test
     public void shouldFetchTrelloBoards() {
         // Given
@@ -32,10 +41,8 @@ public class TrelloServiceTestSuite {
         boards.add(new TrelloBoardDto("123", "Test",lists));
 
         when(trelloClient.getTrelloBoards()).thenReturn(boards);
-
         // When
         List<TrelloBoardDto> fetchedTrelloBoards = trelloService.fetchTrelloBoards();
-
         // Then
         assertEquals(1, fetchedTrelloBoards.size());
         assertEquals("123", fetchedTrelloBoards.get(0).getId());
@@ -44,5 +51,20 @@ public class TrelloServiceTestSuite {
         assertEquals("2", fetchedTrelloBoards.get(0).getLists().get(0).getId());
         assertEquals("Test", fetchedTrelloBoards.get(0).getLists().get(0).getName());
         assertEquals(false, fetchedTrelloBoards.get(0).getLists().get(0).isClosed());
+    }
+
+    @Test
+    public void shouldCreateTrelloCardTest() {
+        // Given
+        TrelloCardDto trelloCardDto = new TrelloCardDto("First card", "Test card", "Top", "1");
+        CreatedTrelloCardDto cardDtoStub = new CreatedTrelloCardDto("Test Id", "Testing", "Test URL");
+
+        when(trelloClient.createNewCard(trelloCardDto)).thenReturn(cardDtoStub);
+        // When
+        CreatedTrelloCardDto createdTrelloCardDto = trelloService.createTrelloCard(trelloCardDto);
+        // Then
+        assertEquals("Test Id", createdTrelloCardDto.getId());
+        assertEquals("Testing", createdTrelloCardDto.getName());
+        assertEquals("Test URL", createdTrelloCardDto.getShortUrl());
     }
 }

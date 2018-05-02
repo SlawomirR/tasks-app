@@ -1,7 +1,8 @@
 package com.crud.tasks.trello.validator;
 
-import com.crud.tasks.domain.*;
-import javafx.beans.binding.When;
+import com.crud.tasks.domain.TrelloBoard;
+import com.crud.tasks.domain.TrelloCard;
+import com.crud.tasks.domain.TrelloList;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,10 +14,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-import java.util.stream.Collectors;
-
-import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -34,6 +31,7 @@ public class TrelloValidatorTestSuite {
         boolean listIsClosed = false;
         String boardName = "TeSt";
         String boardId = "Board123456";
+
         List<TrelloList> lists = new ArrayList<>();
         lists.add(new TrelloList(listId, listName, listIsClosed));
 
@@ -58,6 +56,7 @@ public class TrelloValidatorTestSuite {
         // Then
         Assert.assertTrue(isValidate);
     }
+
     @Test
     public void testValidateCardFalse() {
         // Given

@@ -111,6 +111,5 @@ public class TrelloFacadeTestSuite {
         assertEquals("1", createdCard.getId());
         assertEquals("Test name", createdCard.getName());
         assertEquals("shortUrl", createdCard.getShortUrl());
-
     }
 }

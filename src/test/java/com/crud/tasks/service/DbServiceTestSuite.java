@@ -34,9 +34,8 @@ public class DbServiceTestSuite {
         when(repository.findAll()).thenReturn(tasks);
         // When
         int size = dbService.getAllTasks().size();
-        //Then
+        // Then
         assertEquals(2, size);
-
     }
 
     @Test
@@ -48,7 +47,6 @@ public class DbServiceTestSuite {
         String title = dbService.saveTask(task).getTitle();
         // Then
         assertEquals("Test task", title);
-
     }
 
     @Test
@@ -66,11 +64,12 @@ public class DbServiceTestSuite {
     @Test
     public void shouldDeleteById() {
         // Given
+        doNothing().when(repository).deleteById(1L);
         // When
-        repository.deleteById(1L);
+        dbService.deleteTask(1L);
         // Then
-        verify(repository, times(1)).deleteById(1L);
-
+        System.out.println(mockingDetails(repository).printInvocations());
+        verify(repository).deleteById(1L);
     }
 
     @Test
