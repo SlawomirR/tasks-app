@@ -2,10 +2,19 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>My welcome page</title>
+    <title>Sample welcome page</title>
 </head>
 <body>
-<h1>First impression of my page</h1>
+<h1>Information about this service</h1>
+<p>This service has Front-end placed on Github
+    <br>
+    Please visit: <a th:href="${url_link}" th:text="${url_info}"></a>
+</p>
+<br>
+<br>
+<br>
+<h2>Thymeleaf and simple math calculations</h2>
+First impression of my page</h1>
 <!--/*@thymesVar id="variable" type="com.crud.tasks.controller.StaticWebPageController"*/-->
 <span th:text="${variable}"></span>
 <br>

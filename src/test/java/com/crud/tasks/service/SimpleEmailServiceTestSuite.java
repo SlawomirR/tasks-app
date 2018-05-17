@@ -9,6 +9,10 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessagePreparator;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SimpleEmailServiceTestSuite {
@@ -31,6 +35,7 @@ public class SimpleEmailServiceTestSuite {
         // When
         simpleEmailService.send(mail);
         // Then
-        Mockito.verify(javaMailSender, Mockito.times(1)).send(mailMessage);
+        Mockito.verify(javaMailSender, times(1)).send(any(MimeMessagePreparator.class));
+
     }
 }

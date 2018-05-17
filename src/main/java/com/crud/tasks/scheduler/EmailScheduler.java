@@ -36,7 +36,7 @@ public class EmailScheduler {
         );
     }
 
-    @Scheduled(fixedDelay = 3_600_000)
+    @Scheduled(fixedDelay = 186_400_000)
 //    @Scheduled(cron = "0 0 10 * * *")
     public void sendDetailedInformationEmail() {
         long size = taskRepository.count();
@@ -49,7 +49,7 @@ public class EmailScheduler {
         );
     }
 
-    @Scheduled(fixedDelay = 7_200_000)
+    @Scheduled(fixedDelay = 186_400_000)
 //    @Scheduled(cron = "0 0 10 * * *")
     public void sendAppInfoEmail() {
         long size = taskRepository.count();

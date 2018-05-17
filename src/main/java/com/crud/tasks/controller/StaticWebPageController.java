@@ -10,6 +10,8 @@ public class StaticWebPageController {
 
     @RequestMapping("/")
     public String index(Map<String, Object> model) {
+        model.put("url_info", "https://slawomirr.github.io");
+        model.put("url_link", "https://slawomirr.github.io");
         model.put("variable", "My sample Thymeleaf math calculations:");
         model.put("one", 1);
         model.put("two", 2);
