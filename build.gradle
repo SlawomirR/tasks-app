@@ -43,6 +43,6 @@ dependencies {
 	compile('io.springfox:springfox-swagger-ui:2.8.0')
 
 	// Databases
-	compile('mysql:mysql-connector-java')
-//	compile('org.postgresql:postgresql')
+//	compile('mysql:mysql-connector-java')
+	compile('org.postgresql:postgresql')
 }
