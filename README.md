@@ -1,3 +1,7 @@
-This project will do simple task list management. It is under development.
-Web page where this project is placed (front-end) is: http://slawomirr.github.io with GitHub source code at: https://github.com/SlawomirR/SlawomirR.github.io.git
-Back-end for that project is located on Heroku at: https://mysterious-dusk-98078.herokuapp.com/v1/task/getTasks which source code is on GitHub at: https://github.com/SlawomirR/tasks.git
+Tasks Application
+=================
+Information
+-----------
+This project do simple task list management. It is design as **REST API** that can be found at **Heroku** service: *https://mysterious-dusk-98078.herokuapp.com*. It uses **Trello** service to deal with tasks as cards that can be checked at: *https://trello.com/b/r3PFBoTh*. Tasks are stored to **Heroku's PostgreSQL** database through the API using standard **CRUD** operations.
+Front-end to test the functionality can be found at: *https://slawomirr.github.io*.
+This repository is **the source code** (back-end) that was deployed to Heroku.
