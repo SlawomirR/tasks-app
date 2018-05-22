@@ -1,7 +1,7 @@
 package com.crud.tasks.mapper;
 
 import com.crud.tasks.domain.Task;
-import com.crud.tasks.domain.TaskDto;
+import com.crud.tasks.domain.dto.TaskDto;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

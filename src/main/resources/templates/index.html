@@ -2,30 +2,86 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Sample welcome page</title>
+    <title>Tasks application - REST API using CRUD database operations.</title>
 </head>
 <body>
-<h1>Information about this service</h1>
-<p>This service has Front-end placed on Github
-    <br>
-    Please visit: <a th:href="${url_link}" th:text="${url_info}"></a>
-</p>
+<h1>Tasks application - REST API using CRUD database operations.</h1>
+<h2>Information about this service</h2>
+<ul>
+    <li>
+        <p>This service has Front-end placed on Github<br>
+            Please visit: <a th:href="${url_link}" th:text="${url_info}"></a>
+        </p>
+    </li>
+    <li>
+        <p>API documentation by Swagger<br>
+            Please visit: <a th:href="${swagger_link}" th:text="${swagger_info}"></a>
+        </p>
+    </li>
+    <li>
+        <p>Trello board with cards that application create<br>
+            Please visit: <a th:href="${trello_link}" th:text="${trello_info}"></a>
+        </p>
+    </li>
+</ul>
 <br>
 <br>
 <br>
-<h2>Thymeleaf and simple math calculations</h2>
-First impression of my page</h1>
 <!--/*@thymesVar id="variable" type="com.crud.tasks.controller.StaticWebPageController"*/-->
+<!--
 <span th:text="${variable}"></span>
-<br>
+-->
 <!--/*@thymesVar id="one" type="com.crud.tasks.controller.StaticWebPageController"*/-->
 <!--/*@thymesVar id="two" type="com.crud.tasks.controller.StaticWebPageController"*/-->
-<span th:text="${one} + ' + ' + ${two} + ' = ' + (${one} + ${two})"></span>
-<br>
-<span th:text="${two} + ' * ' + ${two} + ' = ' + (${two} * ${two})"></span>
-<br>
-<span th:text="${two} + ' * ' + ${two} + ' + ' + ${two} + ' = ' + (${two} * ${two} + ${two})"></span>
-<br>
-<span th:text="${two} + ' - ' + ${two} + ' * ' + ${two} + ' = ' + (${two} - ${two} * ${two})"></span>
+<!--
+<h4>Thymeleaf - test simple math calculations</h4>
+<table text-align="center">
+    <tr text-align="center">
+        <th>varX</th>
+        <th>operator</th>
+        <th>varY</th>
+        <th>operator</th>
+        <th>varZ</th>
+        <th>equal</th>
+        <th>result</th>
+    </tr>
+    <tr text-align="center">
+        <td><span th:text="${one}" th:remove="tag"></span></td>
+        <td>+</td>
+        <td><span th:text="${two}" th:remove="tag"></span></td>
+        <td></td>
+        <td></td>
+        <td>=</td>
+        <td><span th:text="(${one} + ${two})" th:remove="tag"></span></td>
+    </tr>
+    <tr text-align="center">
+        <td><span th:text="${two}" th:remove="tag"></span></td>
+        <td>*</td>
+        <td><span th:text="${two}" th:remove="tag"></span></td>
+        <td></td>
+        <td></td>
+        <td>=</td>
+        <td><span th:text="(${two} * ${two})" th:remove="tag"></span></td>
+    </tr>
+    <tr text-align="center">
+        <td><span th:text="${two}" th:remove="tag"></span></td>
+        <td>*</td>
+        <td><span th:text="${two}" th:remove="tag"></span></td>
+        <td>+</td>
+        <td><span th:text="${two}" th:remove="tag"></span></td>
+        <td>=</td>
+        <td><span th:text="(${two} * ${two} + ${two})" th:remove="tag"></span></td>
+    </tr>
+    <tr text-align="center">
+        <td><span th:text="${two}" th:remove="tag"></span></td>
+        <td>-</td>
+        <td><span th:text="${two}" th:remove="tag"></span></td>
+        <td>*</td>
+        <td><span th:text="${two}" th:remove="tag"></span></td>
+        <td>=</td>
+        <td><span th:text="(${two} - ${two} * ${two})" th:remove="tag"></span></td>
+    </tr>
+</table>
+-->
 </body>
 </html>
