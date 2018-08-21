@@ -12,12 +12,11 @@ This repository is a local version of **the source code** (back-end) that was de
 Run Locally
 -----------
 Running application locally impose **you have MySQL server installed** and run with **created database named "database_name"**. User and password to access database should be setup to "**database_user**" and "**database_password**".\
-Those settings you can change in: "*src/main/resources/application.properties*" file in folder you cloned the repository.
+Those settings you can change in: "**src/main/resources/application.properties**" file in folder you cloned the repository.
 
 1. Make local copy of the repository:
-    1. clone the repository with: "git clone https://github.com/SlawomirR/tasks-app.git",\
-or
-    1. download the compressed archive: "https://github.com/SlawomirR/tasks-app/archive/master.zip"
+    1. clone the repository with: "git clone [https://github.com/SlawomirR/tasks-app.git](https://github.com/SlawomirR/tasks-app.git), or
+    1. download the compressed archive: "[https://github.com/SlawomirR/tasks-app/archive/master.zip](https://github.com/SlawomirR/tasks-app/archive/master.zip)"
 2. Setup your MySQl server properly or edit projects settings as mentioned above
-3. Run: "./gradlew bootRun" or "gradlew.bat bootRun" (depending on your OS) in the main folder of the project
-4. Visit: "http://localhost:8085" with your web browser if you left port number unchanged
+3. Run: "**./gradlew bootRun**" or "**gradlew.bat bootRun**" (depending on your OS) in the main folder of the project
+4. Visit: "[http://localhost:8085](http://localhost:8085)" with your web browser if you left port number unchanged
