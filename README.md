@@ -15,7 +15,7 @@ Running application locally impose **you have MySQL server installed** and run w
 Those settings you can change in: "**src/main/resources/application.properties**" file in folder you cloned the repository.
 
 1. Make local copy of the repository:
-    1. clone the repository with: "git clone [https://github.com/SlawomirR/tasks-app.git](https://github.com/SlawomirR/tasks-app.git), or
+    1. clone the repository with: "git clone [https://github.com/SlawomirR/tasks-app.git](https://github.com/SlawomirR/tasks-app.git)", or
     1. download the compressed archive: "[https://github.com/SlawomirR/tasks-app/archive/master.zip](https://github.com/SlawomirR/tasks-app/archive/master.zip)"
 2. Setup your MySQl server properly or edit projects settings as mentioned above
 3. Run: "**./gradlew bootRun**" or "**gradlew.bat bootRun**" (depending on your OS) in the main folder of the project
