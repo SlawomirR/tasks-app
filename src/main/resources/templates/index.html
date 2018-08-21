@@ -10,17 +10,19 @@
 <ul>
     <li>
         <p>This service has Front-end placed on Github to demonstrate how it works.<br>
-            Please visit: <a th:href="${url_link}" th:text="${url_info}"></a>
+            Please visit: <a th:href="${url_link}" th:text="${url_info}">https://slawomirr.github.io/tasks-app_front-end/</a>
         </p>
+        <p><b>Please note</b> that full load for the first time of the page can take up to 1 minute because of Heroku
+            wake up delay.</p>
     </li>
     <li>
         <p>API documentation by Swagger<br>
-            Please visit: <a th:href="${swagger_link}" th:text="${swagger_info}"></a>
+            Please visit: <a th:href="${swagger_link}" th:text="${swagger_info}">https://mysterious-dusk-98078.herokuapp.com/swagger-ui.html</a>
         </p>
     </li>
     <li>
         <p>Trello board with cards that application create<br>
-            Please visit: <a th:href="${trello_link}" th:text="${trello_info}"></a>
+            Please visit: <a th:href="${trello_link}" th:text="${trello_info}">https://trello.com/b/r3PFBoTh</a>
         </p>
     </li>
 </ul>
