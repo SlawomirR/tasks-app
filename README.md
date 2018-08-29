@@ -3,9 +3,9 @@ Tasks Application
 Information
 -----------
 This project do simple task list management.\
-It is design as **REST API** and has been deploy to **Heroku** service: [https://mysterious-dusk-98078.herokuapp.com](https://mysterious-dusk-98078.herokuapp.com).\
+It is design as **REST API** and has been deploy to **Heroku** service: [https://tasks-app-slawomirr-github.herokuapp.com](https://tasks-app-slawomirr-github.herokuapp.com).\
 It uses **Trello** service to deal with tasks as cards that can be checked at: [https://trello.com/b/r3PFBoTh](https://trello.com/b/r3PFBoTh).\
-Tasks are stored to **Heroku's PostgreSQL** database through the API using standard **CRUD** operations.\
+Tasks from Trello are stored to **Heroku's PostgreSQL** database through the API using standard **CRUD** operations.\
 Front-end to test the functionality can be found at: [https://slawomirr.github.io/tasks-app_front-end](https://slawomirr.github.io/tasks-app_front-end).\
 This repository is a local version of **the source code** (back-end) that was deployed to Heroku.
 
@@ -20,3 +20,7 @@ Those settings you can change in: "**src/main/resources/application.properties**
 2. Setup your MySQl server properly or edit projects settings as mentioned above
 3. Run: "**./gradlew bootRun**" or "**gradlew.bat bootRun**" (depending on your OS) in the main folder of the project
 4. Visit: "[http://localhost:8085](http://localhost:8085)" with your web browser if you left port number unchanged
+
+Important
+---------
+Please be aware this project is the back-end only with separate front-end provided as mentioned above.
