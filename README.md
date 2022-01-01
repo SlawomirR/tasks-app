@@ -3,10 +3,14 @@ Tasks Application
 Information
 -----------
 This project do simple task list management.\
-It is design as **REST API** and has been deploy to **Heroku** service: [https://tasks-app-slawomirr-github.herokuapp.com](https://tasks-app-slawomirr-github.herokuapp.com).\
-It uses **Trello** service to deal with tasks as cards that can be checked at: [https://trello.com/b/r3PFBoTh](https://trello.com/b/r3PFBoTh).\
-Tasks from Trello are stored to **Heroku's PostgreSQL** database through the API using standard **CRUD** operations.\
-Front-end to test the functionality can be found at: [https://slawomirr.github.io/tasks-app_front-end](https://slawomirr.github.io/tasks-app_front-end).\
+It is design as **REST API** and has been deploy to **Heroku**
+service: [https://tasks-app-slawomirr.herokuapp.com](https://tasks-app-slawomirr.herokuapp.com).\
+It uses **Trello** service to deal with tasks as cards that can be checked
+at: [https://trello.com/b/r3PFBoTh](https://trello.com/b/r3PFBoTh).\
+Tasks from Trello are stored to **Heroku's PostgreSQL** database through the API using standard **
+CRUD** operations.\
+Front-end to test the functionality can be found
+at: [https://slawomirr.github.io/tasks-app_front-end](https://slawomirr.github.io/tasks-app_front-end).\
 This repository is a local version of **the source code** (back-end) that was deployed to Heroku.
 
 Run Locally
